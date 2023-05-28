@@ -47,6 +47,16 @@ public class Main {
         for (String str : array) {
             System.out.println(str);
         }
+
+        seperateZeroAndNonZeroValues(new int[]{1,3,0,3,0,4,5,0});
+        //Converting Array to ArrayList
+        String[] cityNames ={"Boston", "Chicago", "San Francisco", "New York"};
+        List<String> cityList= new ArrayList<>();
+        cityList = Arrays.asList(cityNames);
+        System.out.println(cityList);
+        System.out.println(cityList.contains("Boston"));
+
+        convertArrayToTreeSet();
     }
 
     public static int firstDuplicateInArray(int[] arr) {
@@ -138,10 +148,10 @@ public class Main {
     public static void arrayIntersection(int[] a, int[] b) {
         int [] c = new int[a.length + b.length];
         int intersectionCounter = 0;
-        for (int value : a) {
+        for (int j : a) {
             for (int i : b) {
-                if (value == i) {
-                    c[intersectionCounter] = value;
+                if (j == i) {
+                    c[intersectionCounter] = j;
                     ++intersectionCounter;
                 }
             }
@@ -188,8 +198,29 @@ public class Main {
         }
         System.out.println(Arrays.toString(arr));
         System.out.println(Arrays.toString(newArr));
-
     }
 
-    public static void convertSetToArray(HashSet<Integer> set) {}
+    public static void seperateZeroAndNonZeroValues(int[] arr) {
+        int counter = 0;
+        for (int i: arr) {
+            if (i != 0) {
+                arr[counter] = i;
+                ++counter;
+            }
+        }
+        while (counter < arr.length) {
+            arr[counter] = 0;
+            ++counter;
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+
+    public static void convertArrayToTreeSet() {
+        String[] cityNames ={"Boston", "Chicago", "San Francisco", "New York"};
+        List<String> list = new ArrayList<>();
+         list = Arrays.asList(cityNames);
+        Set<String> set = new TreeSet<>(list);
+        System.out.println(set);
+    }
+
 }
