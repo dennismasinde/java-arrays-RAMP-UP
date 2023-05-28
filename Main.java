@@ -20,6 +20,33 @@ public class Main {
         System.out.println(duplicate);
         System.out.println(Arrays.toString(deleteElementFromArray(new int[]{1, 2, 3, 4, 5}, 3)));
         System.out.println(missingNumberInArray(new int[]{1,2,3,4,5,7}));
+        arrayIntersection(new int[]{1,2},new int[]{2,3});
+        System.out.println(missingNumberInArray(new int[]{1,2,3,5}));
+        smallestAndLargest(new int[]{1,2,3,4,5,6,7});
+        reverseArray(new int[]{1,2,3,4,5});
+
+        HashSet<String> hashset = new HashSet<String>();
+
+        // Adding elements to HashSet object
+        hashset.add("Doctor");
+        hashset.add("Engineer");
+        hashset.add("Lawyer");
+        hashset.add("Police");
+
+        // Printing HashSet elements
+        System.out.println("HashSet contains: "+ hashset);
+
+        // Creating an Array of HashSet size
+        String[] array = new String[hashset.size()];
+
+        // Converting HashSet to Array using toArray() method
+        hashset.toArray(array);
+
+        // Printing Array elements
+        System.out.println("Array contains: ");
+        for (String str : array) {
+            System.out.println(str);
+        }
     }
 
     public static int firstDuplicateInArray(int[] arr) {
@@ -90,4 +117,79 @@ public class Main {
     public static List<String> arrayToArrayList(String [] names) {
         return Arrays.asList(names);
     }
+
+    public static boolean isEqual(int[] arr1, int[] arr2) {
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        return Arrays.equals(arr1,arr2);
+    }
+
+    public static void copyOneArrayToAnother(int[] a){
+        int[] b = new int[a.length];
+        System.arraycopy(a,0,b,0,a.length);
+        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(b));
+    }
+
+    public static int searchForSpecificItem(int[] arr, int item) {
+        return Arrays.binarySearch(arr,item);
+    }
+
+    public static void arrayIntersection(int[] a, int[] b) {
+        int [] c = new int[a.length + b.length];
+        int intersectionCounter = 0;
+        for (int value : a) {
+            for (int i : b) {
+                if (value == i) {
+                    c[intersectionCounter] = value;
+                    ++intersectionCounter;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(c));
+        for (int k = 0; k < intersectionCounter; k++) {
+            System.out.println(c[k]);
+        }
+    }
+
+    public static int missingNumber(int [] arr) {
+        int sum = 0;
+        for (int i = 1; i < arr.length + 1; i++) {
+            sum += i;
+        }
+        int arrSum = 0;
+        for (int j = 0; j < arr.length; j++) {
+            arrSum += j;
+        }
+        return sum - arrSum;
+    }
+
+    public static void smallestAndLargest(int[] arr) {
+        int smallest = Integer.MAX_VALUE;
+        int largest = Integer.MIN_VALUE;
+
+        for (int j : arr) {
+            if (j < smallest) {
+                smallest = j;
+            }
+            if (j > largest) {
+                largest = j;
+            }
+        }
+        System.out.println("Largest value: " + largest);
+        System.out.println("Smallest value: " + smallest);
+    }
+
+    public static void reverseArray(int[] arr) {
+        int[] newArr = new int[arr.length];
+
+        for (int i = 0; i < arr.length; i++) {
+            newArr[i] = arr[arr.length - 1 - i];
+        }
+        System.out.println(Arrays.toString(arr));
+        System.out.println(Arrays.toString(newArr));
+
+    }
+
+    public static void convertSetToArray(HashSet<Integer> set) {}
 }
